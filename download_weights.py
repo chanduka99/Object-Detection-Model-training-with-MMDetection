@@ -1,7 +1,7 @@
 import os
 import requests
 import yaml
-from glob import glob
+import glob
 from tqdm import tqdm
 import argparse
 
@@ -147,28 +147,28 @@ def get_model(weights_name):
     # Download the checkpoint file.(will only donwload if the checkpoint file is not present locally)
     download_weights(url=download_url,file_save_name=download_url.split('/')[-1])
 
-    checkpoint_file = os.path.join('checkpoint',download_url.split('/')[-1])
+    # checkpoint_file = os.path.join('checkpoint',download_url.split('/')[-1])
 
-    # Build the model using the configuration file.
-    config_file = os.path.join(
-        'mmdetection/configs',
-        download_url.split('/')[-3],
-        download_url.split('/')[-2]+
-        '.py')
+    # # Build the model using the configuration file.
+    # config_file = os.path.join(
+    #     'mmdetection/configs',
+    #     download_url.split('/')[-3],
+    #     download_url.split('/')[-2]+
+    #     '.py')
     
-    special_file_name_containing_folders = ["dino", "double_heads"]
+    # special_file_name_containing_folders = ["dino", "double_heads"]
 
-    config_file = format_checkpoint_file_name(special_file_name_containing_folders,config_file)
+    # config_file = format_checkpoint_file_name(special_file_name_containing_folders,config_file)
 
-    model = init_detector(config=config_file,checkpoint=checkpoint_file,cfg_options=dict(
-        rcnn=dict(
-            score_thr=0.05,   # detection threshold
-            nms=dict(type='nms', iou_threshold=0.5),
-            max_per_img=100
-        )
-    ))
+    # model = init_detector(config=config_file,checkpoint=checkpoint_file,cfg_options=dict(
+    #     rcnn=dict(
+    #         score_thr=0.05,   # detection threshold
+    #         nms=dict(type='nms', iou_threshold=0.5),
+    #         max_per_img=100
+    #     )
+    # ))
 
-    return model
+    # return model
 
 def write_weights_txt_file():
     """
