@@ -11,3 +11,8 @@ print(f"Default Config:\n {cfg.pretty_text}")
 # Modify dataset type and path.
 cfg.dataset_type = 'VOCDataset'
 cfg.data_root ='data/'
+
+
+cfg.data.test.type = 'VOCDataset'
+cfg.data.test.data_root = 'data/VOCdevkit/'
+# cfg.data.test.ann_file=''
