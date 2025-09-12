@@ -17,3 +17,13 @@ cfg.data.test.type = 'VOCDataset'
 cfg.data.test.data_root = 'data/VOCdevkit/'
 cfg.data.test.ann_file='VOC2007/ImageSets/Main/trainval.txt'
 cfg.data.train.img_prefix = 'VOC2007/'
+
+cfg.data.train.type = 'VOCDataset'
+cfg.data.train.data_root = 'data/VOCdevkit/'
+cfg.data.train.ann_file = 'VOC2007/ImageSets/Main/trainval.txt'
+cfg.data.train.img_prefix = 'VOC2007/'
+
+cfg.data.val.type = 'VOCDataset'
+cfg.data.val.data_root = 'data/VOCdevkit/'
+cfg.data.val.ann_file = 'VOC2007/ImageSets/Main/test.txt'
+cfg.data.val.img_prefix = 'VOC2007/'
