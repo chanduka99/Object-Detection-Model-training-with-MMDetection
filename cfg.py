@@ -22,7 +22,8 @@ cfg.data.train.type = 'VOCDataset'
 cfg.data.train.data_root = 'data/VOCdevkit/'
 cfg.data.train.ann_file = 'VOC2007/ImageSets/Main/trainval.txt'
 cfg.data.train.img_prefix = 'VOC2007/'
-
+#
+# test config setup
 cfg.data.val.type = 'VOCDataset'
 cfg.data.val.data_root = 'data/VOCdevkit/'
 cfg.data.val.ann_file = 'VOC2007/ImageSets/Main/test.txt'
