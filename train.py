@@ -4,7 +4,7 @@
 from mmengine.runner import Runner 
 # from mmdet.apis import train_detector - only worked in older versions
 
-import os.path as osp
+import os
 import mmcv
 
 from cfg import cfg
@@ -21,6 +21,8 @@ runner = Runner.from_cfg(cfg=cfg)
 # model.CLASSES = datasets[0].CLASSES
 
 # Create work_dir
-mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
+# mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
+if not os.path.exists(cfg.work_dir):
+    os.makedirs(cfg.work_dir,exist_ok=True)
 # train_detector(model,datasets,cfg,distributed=False,validate=True)
 runner.train()
