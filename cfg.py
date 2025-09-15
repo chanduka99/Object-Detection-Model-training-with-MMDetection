@@ -1,5 +1,5 @@
 from mmengine.config import Config
-from mmdet.apis import set_random_seed
+
 
 cfg = Config.fromfile('mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py')
 
@@ -12,11 +12,41 @@ print(f"Default Config:\n {cfg.pretty_text}")
 cfg.dataset_type = 'VOCDataset'
 cfg.data_root ='data/'
 
+train_dataloader = dict(
+    batch_size=2,
+    num_workers=2,
+    dataset=dict(
+        type=dataset_type,
+        # ... other dataset configurations
+        # e.g., data_root, ann_file, data_prefix, pipeline
+    )
+)
 
-cfg.data.test.type = 'VOCDataset'
-cfg.data.test.data_root = 'data/VOCtest_06-Nov-2007/VOCdevkit/'
-cfg.data.test.ann_file='VOC2007/ImageSets/Main/test.txt'
-cfg.data.train.img_prefix = 'VOC2007/'
+val_dataloader = dict(
+    batch_size=1,
+    num_workers=2,
+    dataset=dict(
+        type=dataset_type,
+        # ... other dataset configurations
+    )
+)
+
+test_dataloader = dict(
+    batch_size=1,
+    num_workers=2,
+    dataset=dict(
+        type=dataset_type,
+        # ... other dataset configurations
+    )
+)
+# cfg.data.test.type = 'VOCDataset'
+cfg.test_dataloader.dataset.type = 'VOCDataset'
+# cfg.data.test.data_root = 'data/VOCtest_06-Nov-2007/VOCdevkit/'
+cfg.test_dataloader.dataset.data_root = 'data/VOCtest_06-Nov-2007/VOCdevkit/'
+# cfg.data.test.ann_file='VOC2007/ImageSets/Main/test.txt'
+cfg.test_dataloader.dataset.ann_file = 'VOC2007/ImageSets/Main/test.txt'
+# cfg.data.train.img_prefix = 'VOC2007/'
+cfg.test_dataloader.dataset.data_prefix = 'VOC2007/'
 
 cfg.data.train.type = 'VOCDataset'
 cfg.data.train.data_root = 'data/VOCtrainval_06-Nov-2007/VOCdevkit/'
@@ -58,7 +88,8 @@ cfg.checkpoint_config.interval = 5
 
 # Set random seed for reproducible results.
 cfg.seed = 0
-set_random_seed(0,deterministic=False)
+# set_random_seed(0,deterministic=False)
+cfg.determinsitic =False
 cfg.gpu_ids = range(1)
 cfg.device = 'cuda'
 cfg.runner.max_epochs = 10
